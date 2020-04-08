@@ -8,8 +8,7 @@ function Todopage() {
   const userId = fire.auth().currentUser.uid;
 
     useEffect(() => {
-      receiveTodos()
-
+      // receiveTodos()
     });
 
     function logout() {
@@ -26,7 +25,7 @@ function Todopage() {
       
       todoText.value = "";
 
-      receiveTodos()
+      // receiveTodos()
     }
 
 
@@ -37,79 +36,171 @@ function Todopage() {
     divLiOptions.classList.add('div-li-options');
 
 
-    let todoValFormatted = "<ul>"
 
-    function receiveTodos() {
+    // function receiveTodos() {
 
-      const todoContainer = document.querySelector(".Todo-listed");
+    //   const todoContainer = document.querySelector(".Todo-listed");
 
-      const db = fire.database();
-      const ref = db.ref('users/' + userId + '/todolist').orderByChild('todo');
+    //   const db = fire.database();
+    //   const ref = db.ref('users/' + userId + '/todolist').orderByChild('todo');
 
-      ref.once('value',function(snap) {
-        snap.forEach(function(item) {
-          let itemVal = item.val();
-          keys.push(itemVal);
+    //   ref.once('value',function(snap) {
+    //     snap.forEach(function(item) {
+    //       let itemVal = item.val();
+    //       keys.push(itemVal);
             
-        });
+    //     });
 
-        // let todoValFormatted = "<ul>"
-
-        for (let i=0; i < keys.length; i++) {
-          todoVal.push(keys[i].todo);
-
-          todoValFormatted += "<div class='div-li-loaded'><li>" + todoVal[i] + "</li></div><div class=div-li-options></div>"
-
-          // Button
-
-          // const buttonTest = document.createElement("BUTTON")
-          // buttonTest.appendChild(document.createTextNode("Molest me"));
-
-          // buttonTest.onclick = function() {
-          //   alert("message");
-          // }
+    //     let todoValFormatted = "<ul>"
 
 
-          // const buttonTestOH = buttonTest.outerHTML
+    //     for (let i=0; i < keys.length; i++) {
+    //       todoVal.push(keys[i].todo);
 
-          // todoValFormatted += buttonTestOH
+    //       // todoValFormatted += "<div class='div-li-loaded'><li>" + todoVal[i] + "</li></div><div class='div-li-options'></div>"
+    //       // console.log("todoval i : ", todoVal[i])
 
-          // todoValFormatted += "</div>"
-         
+    //     }
 
-        }
+    //       // todoValFormatted += "</div></ul>"
+    //       // todoContainer.innerHTML = todoValFormatted
 
+    //   }); 
+    // }
 
-          todoValFormatted += "</ul>"
-          todoContainer.innerHTML = todoValFormatted
+    // const todoContainer = document.querySelector(".Todo-listed");
 
+    const db = fire.database();
+    const ref = db.ref('users/' + userId + '/todolist').orderByChild('todo');
+
+    ref.once('value',function(snap) {
+      snap.forEach(function(item) {
+        let itemVal = item.val();
+        keys.push(itemVal);
           
       });
 
-      
+      let todoValFormatted = "<ul>"
+
+
+      for (let i=0; i < keys.length; i++) {
+        todoVal.push(keys[i].todo);
+
+        // todoValFormatted += "<div class='div-li-loaded'><li>" + todoVal[i] + "</li></div><div class='div-li-options'></div>"
+          // const element = (
+          //   <li>
+          //     todoVal[i]
+          //   </li>
+          // );
+          // return element
+
+          const element = <li>todoVal</li>
+      }
+
+        // todoValFormatted += "</div></ul>"
+        // todoContainer.innerHTML = todoValFormatted
+
+    }); 
+        console.log("todoval i : ", todoVal)
+
+        // const listItems = todoVal.map((todo) =>
+        //   <li>{todo}</li>
+        // );
+
+    // const ulElement = (
+    //   <ul>{element}</ul>
+    // );    
+ 
+    // function NumberList(props) {
+    //   const numbers = props.numbers;
+    //   const listItems = numbers.map((number) =>
+    //     <li>{number}</li>
+    //   );
+    //   return (
+    //     <ul>{listItems}</ul>
+    //   );
+    // }
+    
+    // var fruits = ["apple", "orange", "cherry"];
+
+    // todoVal.forEach(myFunction);
+
+    // function myFunction(item) {
+    //   // document.getElementById("demo").innerHTML = item + "<br>"; 
+    //   // <li>{item}</li>
+    //   const element = (
+    //   <li>{item}</li>
+    //   );
+    //   return element;
+    // }
+
+    // const myFunction = (item) => {
+    //   <li>{item}</li>
+
+    // }
+
+
+    // var fruits = ["apple", "orange", "cherry"];
+    todoVal.forEach(myFunction);
+    
+    function myFunction(item) {
+
+      const element = (
+        <li>
+          {item}
+        </li>
+      );
+      // return element;
+
+      // document.getElementById("demo").innerHTML += index + ":" + item + "<br>";
+      document.querySelector('.Todo-listed').innerHTML += item + "<br>"
     }
 
-    console.log("todoval i : ", todoVal)
+    // const numbers = [1, 2, 3, 4, 5];
+
+
+    // function NumberList(props) {
+    //   // const numbers = props.numbers;
+    //   // const listItems = numbers.map((number) =>
+    //   //   <li key={number.toString()}>
+    //   //     {number}
+    //   //   </li>
+    //   // );
+    //   const listItems = todoVal.map((number) =>
+    //     <li>{number}</li>
+    //   );
+    //   return (
+    //     <ul>{listItems}</ul>
+    //   );
+    // }
+    
+    // function NumberList(props) {
+    //   const numbers = props.numbers;
+    //   const listItems = numbers.map((number) =>
+    //     <li>{number}</li>
+    //   );
+    //   return (
+    //     <ul>{listItems}</ul>
+    //   );
+    // }
+    
+    const numbersArray = [1, 2, 3, 4, 5];
+
+
+    // function NumberList(props) {
+    //   const numbers = props.numbers;
+    //   const listItems = numbers.map((number) =>
+    //     <li key={number.toString()}>
+    //       {number}
+    //     </li>
+    //   );
+    //   return (
+    //     <ul>{listItems}</ul>
+    //   );
+    // }
 
 
 
-
-       // Button
-
-          // const buttonTest = document.createElement("BUTTON")
-          // buttonTest.appendChild(document.createTextNode("Molest me"));
-
-          // buttonTest.onclick = function() {
-          //   alert("message");
-          // }
-
-
-          // const buttonTestOH = buttonTest.outerHTML
-
-          // todoValFormatted += buttonTestOH
-
-          // todoValFormatted += "</div>"
-   
 
 
   return (
@@ -131,9 +222,20 @@ function Todopage() {
               <button onClick={createTodo} className="Input-todo-button">Enter</button>
             </div>
             <div className="Todo-listed">
-              
-            </div>
+            {/* <NumberList numbers={numbersArray} /> */}
 
+            {/* <ul>{listItems}</ul> */}
+              {/* <myFunction /> */}
+              {/* <ul>
+                {listItems}
+              </ul> */}
+              {/* <ul>
+                {element}
+              </ul> */}
+              {/* {newTodoContainer} */}
+              {/* <NumberList numbers={numbers} /> */}
+
+            </div>
           </div>
         </div>
       
@@ -146,3 +248,51 @@ function Todopage() {
 
 export default Todopage;
 
+
+
+
+
+
+{/*
+
+
+
+
+    function receiveTodos() {
+
+      const todoContainer = document.querySelector(".Todo-listed");
+
+      const db = fire.database();
+      const ref = db.ref('users/' + userId + '/todolist').orderByChild('todo');
+
+      ref.once('value',function(snap) {
+        snap.forEach(function(item) {
+          let itemVal = item.val();
+          keys.push(itemVal);
+            
+        });
+
+        let todoValFormatted = "<ul>"
+
+
+        for (let i=0; i < keys.length; i++) {
+          todoVal.push(keys[i].todo);
+
+          // todoValFormatted += "<div class='div-li-loaded'><li>" + todoVal[i] + "</li></div><div class='div-li-options'></div>"
+          // console.log("todoval i : ", todoVal[i])
+
+
+          
+
+        }
+
+          // todoValFormatted += "</div></ul>"
+          // todoContainer.innerHTML = todoValFormatted
+
+      }); 
+    }
+
+
+
+
+*/}
