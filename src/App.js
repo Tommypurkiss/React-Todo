@@ -1,21 +1,10 @@
 import React, { Component } from 'react';
 import './App.scss';
 
-import Homepage from './Homepage';
-import Todopage from './Todopage';
+import Homepage from './components/Homepage';
+import Todopage from './components/Todopage';
 
-import fire from './Config';
-
-// function App() {
-//   return (
-//     <div className="App">
-      
-//     </div>
-//   );
-// }
-
-// export default App;
-
+import fire from './config/Config';
 
 
 class App extends Component {
@@ -55,15 +44,10 @@ class App extends Component {
   render(){
     return(
 
-
       <div>
+        {/* If the user has already logged in before, you go straight to the Todopage, else you go to the Homepage */}
         {this.state.user ? (<Todopage/>) : (<Homepage/>)}
-
       </div>
-      
-
-
-
 
     );
   }
